@@ -1,0 +1,41 @@
+cmake_minimum_required(VERSION 3.10)
+project(modmenu)
+
+set(CMAKE_CXX_STANDARD 17)
+
+# 编译选项
+add_compile_options(-Wall -Wextra -O2 -fvisibility=hidden)
+
+# 主库
+add_library(ModMenu SHARED
+    Main.cpp
+    ImGui/imgui.cpp
+    ImGui/imgui_draw.cpp
+    ImGui/imgui_widgets.cpp
+    ImGui/imgui_demo.cpp
+    ImGui/backends/imgui_impl_android.cpp
+ImGui/后端/igui_impl_opengl3.cpp
+多比/多比.CPP
+KittyMemory/KittyMemory.cpp
+)
+
+# 头文件路径
+target_include_directories(ModMenu PRIVATE
+${CMake_CURRENT_SOURCE_DIR}
+${CMake_CURRENT_SOURCE_DIR}/ImGui
+${CMake_CURRENT_SOURCE_DIR}/多臂
+${CMake_CURRENT_SOURCE_DIR}/KittyMemory
+)
+
+# 链接库
+目标链接库(ModMenu
+日志
+安卓
+EGL
+GLESv3
+)
+
+# 去除调试符号 (可选)
+set_target_properties(modmenu属性
+link_FLAGS"-Wl，--strip-all"
+)
